@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">FinalProject_PAM</string>
+    <string name="app_name">Animals</string>
+    <string name="name">Nama</string>
+    <string name="jenis">Jenis Hewan</string>
+    <string name="jk">Jenis Kelamin</string>
+    <string name="age">Usia</string>
+    <string name="price">Harga</string>
+    <string name="buy">Beli</string>
+    <string name="sell">Jual</string>
+    <string name="address">Alamat</string>
+    <string name="phone">Kontak</string>
+    <string name="total_price">Total %s</string>
 </resources>
