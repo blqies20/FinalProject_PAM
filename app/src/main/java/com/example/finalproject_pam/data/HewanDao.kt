@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface HewanDao {
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(hewan: Hewan)
 
@@ -25,4 +26,22 @@ interface HewanDao {
 
     @Query("SELECT * from tblHewan ORDER BY JenisHewan ASC")
     fun getAllHewan(): Flow<List<Hewan>>
+}
+
+@Dao
+interface RegisterDao {
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insert(register: Register)
+
+    @Update
+    suspend fun update(register: Register)
+
+    @Delete
+    suspend fun delete(register: Register)
+
+    @Query("SELECT * from tblRegister WHERE NamaPanjang = NamaPanjang")
+    fun getRegister(id: Int): Flow<Register>
+
+    @Query("SELECT * from tblRegister ORDER BY NamaPanjang ASC")
+    fun getAllRegister(): Flow<List<Register>>
 }
