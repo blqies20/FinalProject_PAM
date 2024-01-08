@@ -18,7 +18,7 @@ Aplikasi ini buat untuk mempermudah orang yang sekiranya ingin menjual ataupun i
 Balqis bagian Delete dan Read, Reza bagian Create dan Update, untuk tampilan ui dibuat bersama
 
 Fitur yang ada meliputi CRUD ialah 
-- _Create_ - bisa memasukkan data hewan yang ingin dijual seperti nama, jenis hewan, jenis kelamin, usia, dan harga.
+- _Create_ - bisa memasukkan data hewan yang ingin dijual seperti jenis hewan, jenis kelamin, usia, dan harga.
 - _Read_ - menampilkan data hewan yang sudah dimasukkan.
 - _Update_ - update ataupun mengedit data hewan apabila ada perubahan
 - _Delete_ - menghapus data hewan yang sudah terjual 
