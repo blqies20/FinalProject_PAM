@@ -20,7 +20,4 @@ abstract class DatabaseHewan : RoomDatabase() {
             })
         }
     }
-
-
-
 }

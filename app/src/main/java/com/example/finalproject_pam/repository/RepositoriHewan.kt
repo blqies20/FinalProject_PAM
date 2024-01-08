@@ -7,7 +7,7 @@ interface RepositoriHewan {
 
     fun getAllHewanStream(): Flow<List<Hewan>>
 
-    fun getHewanStream(id: Int): Flow<Hewan>
+    fun getHewanStream(JenisHewan: String): Flow<Hewan>
 
     suspend fun insertHewan(hewan: Hewan)
 
