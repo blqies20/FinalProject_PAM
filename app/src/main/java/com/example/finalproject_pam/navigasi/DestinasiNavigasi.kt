@@ -1,4 +1,8 @@
 package com.example.finalproject_pam.navigasi
 
-class DestinasiNavigasi {
+interface DestinasiNavigasi {
+
+    val route: String
+
+    val titleRes: Int
 }
