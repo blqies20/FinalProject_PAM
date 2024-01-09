@@ -5,10 +5,9 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(entities = [Hewan::class, Register::class], version = 1, exportSchema = false)
+@Database(entities = [Hewan::class], version = 1, exportSchema = false)
 abstract class DatabaseHewan : RoomDatabase() {
     abstract fun hewanDao() : HewanDao
-    abstract fun registerDao() : RegisterDao
 
     companion object{
         @Volatile

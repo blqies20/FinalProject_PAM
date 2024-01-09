@@ -9,6 +9,14 @@
     <string name="sell">Jual</string>
     <string name="address">Alamat</string>
     <string name="phone">Kontak</string>
+    <string name="back">Back</string>
+    <string name="login">LOGIN</string>
+    <string name="log">Login Menggunakan Akun Yang sudah Terdaftar</string>
+    <string name="entry_hewan">masukkan data</string>
     <string name="total_price">Total %s</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="email">Email</string>
     <string name="required">Tekan Tombol Tambah Jika Belum Ada Data Hewan</string>
 </resources>
