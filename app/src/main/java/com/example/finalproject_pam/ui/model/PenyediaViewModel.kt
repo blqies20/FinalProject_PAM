@@ -13,6 +13,10 @@ object PenyediaViewModel {
         initializer {
             HomeViewModel(aplikasiHewan().container.repositoriHewan)
         }
+
+        initializer {
+            AddViewModel(aplikasiHewan().container.repositoriHewan)
+        }
     }
 }
 

@@ -19,6 +19,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.finalproject_pam.R
+import com.example.finalproject_pam.ui.screen.AddScreen
+import com.example.finalproject_pam.ui.screen.DestinasiAdd
+
 import com.example.finalproject_pam.ui.screen.HomeScreen
 import com.example.finalproject_pam.ui.screen.LoginScreen
 import com.example.finalproject_pam.ui.screen.SignUpScreen
@@ -85,7 +88,11 @@ fun PetaNavigasi(
         }
         
         composable("home"){
-            HomeScreen(navigateToItemEntry = {navController.navigate("entry_item")})
+            HomeScreen(navigateToItemEntry = {navController.navigate(DestinasiAdd.route)})
+        }
+        
+        composable(DestinasiAdd.route){
+            AddScreen(navigateBack = { navController.popBackStack()})
         }
     }
 

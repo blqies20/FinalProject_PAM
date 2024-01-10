@@ -1,7 +1,8 @@
-@file:OptIn(ExperimentalMaterial3Api::class)
+@file:OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterial3Api::class)
 
 package com.example.finalproject_pam.ui.screen
 
+import android.graphics.Paint.Align
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -114,6 +116,7 @@ fun BodyScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
     ) {
+
         if (itemHewan.isEmpty()){
             Text(
                 text = stringResource(id = R.string.required),
@@ -127,19 +130,8 @@ fun BodyScreen(
                 onItemClick = {onHewanClick(it.id)}
             )
         }
-        OutlinedTextField(
-            value = searchKeyword,
-            onValueChange = {
-                searchKeyword = it
-                onSearchTextChanged(it)
-            },
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(horizontal = dimensionResource(id = R.dimen.padding_small)),
-            label = { Text("Cari Jenis Hewan") }
-        )
 
-        Spacer(modifier = Modifier.height(8.dp))
+
     }
 }
 
@@ -173,13 +165,15 @@ fun DataHewan(
             verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_small))
         ) {
             Row(
-                modifier = Modifier.fillMaxWidth()
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
                     painter = painterResource(id = R.drawable.pets),
                     contentDescription = "jenis",
-                    modifier = Modifier.size(10.dp).weight(0.2f)
+                    modifier = Modifier.size(23.dp)
                 )
+                Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.padding_small)))
                 Text(
                     text = hewan.JenisHewan,
                     style = MaterialTheme.typography.titleLarge
@@ -191,8 +185,9 @@ fun DataHewan(
                 Icon(
                     painter = painterResource(id = R.drawable.gender),
                     contentDescription = "gender",
-                    modifier = Modifier.size(10.dp).weight(0.2f)
+                    modifier = Modifier.size(30.dp)
                 )
+                Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.padding_small)))
                 Text(
                     text = hewan.JenisKelamin,
                     style = MaterialTheme.typography.titleMedium
@@ -204,8 +199,9 @@ fun DataHewan(
                 Icon(
                     imageVector = Icons.Default.Info,
                     contentDescription = "usia",
-                    modifier = Modifier.size(10.dp).weight(0.2f)
+                    modifier = Modifier.size(23.dp)
                 )
+                Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.padding_small)))
                 Text(
                     text = hewan.Usia,
                     style = MaterialTheme.typography.titleMedium
@@ -217,8 +213,9 @@ fun DataHewan(
                 Icon(
                     imageVector = Icons.Default.ShoppingCart,
                     contentDescription = "Harga",
-                    modifier = Modifier.size(10.dp).weight(0.2f)
+                    modifier = Modifier.size(23.dp)
                 )
+                Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.padding_small)))
                 Text(
                     text = hewan.Harga,
                     style = MaterialTheme.typography.titleMedium

@@ -18,5 +18,6 @@
     <string name="password">Password</string>
     <string name="sign_up">Sign Up</string>
     <string name="email">Email</string>
+    <string name="add_hewan">Tambahkan Data</string>
     <string name="required">Tekan Tombol Tambah Jika Belum Ada Data Hewan</string>
 </resources>

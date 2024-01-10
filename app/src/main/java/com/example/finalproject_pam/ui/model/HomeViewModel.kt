@@ -14,15 +14,7 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel (private val repositoriHewan: RepositoriHewan): ViewModel(){
 
-    private val _searchResults = MutableStateFlow<List<Hewan>>(emptyList())
-    val searchResults: StateFlow<List<Hewan>> = _searchResults
 
-    fun searchHewan(searchKeyword: String) {
-        viewModelScope.launch {
-            val results = repositoriHewan.searchHewan(searchKeyword) ?: emptyList()
-            _searchResults.value = results
-        }
-    }
 
     companion object{
         private  const val TIMEOUT_MILLIS = 5_000L
@@ -39,4 +31,14 @@ class HomeViewModel (private val repositoriHewan: RepositoriHewan): ViewModel(){
     data class HomeUiState(
         val listHewan: List<Hewan> = listOf()
     )
+    private val _searchResults = MutableStateFlow<List<Hewan>>(emptyList())
+    val searchResults: StateFlow<List<Hewan>> = _searchResults
+
+    fun searchHewan(searchKeyword: String) {
+        viewModelScope.launch {
+            val results = repositoriHewan.searchHewan(searchKeyword) ?: emptyList()
+            _searchResults.value = results
+        }
+    }
+
 }
