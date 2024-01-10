@@ -40,6 +40,7 @@ fun HewanTopAppbar(
     scrollBehavior: TopAppBarScrollBehavior? = null,
     navigateUp: () -> Unit = {}
 ){
+
     CenterAlignedTopAppBar(
         title = { Text(title) },
         modifier = modifier,
@@ -48,7 +49,7 @@ fun HewanTopAppbar(
             if (canNavigateBack){
                 IconButton(onClick = navigateUp) {
                     Icon(
-                        imageVector = Icons.Filled.ArrowBack, 
+                        imageVector = Icons.Filled.ArrowBack,
                         contentDescription = stringResource(
                         id = R.string.back
                     )

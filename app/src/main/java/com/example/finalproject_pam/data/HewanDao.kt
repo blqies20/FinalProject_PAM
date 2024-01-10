@@ -26,4 +26,7 @@ interface HewanDao {
 
     @Query("SELECT * from tblHewan ORDER BY JenisHewan ASC")
     fun getAllHewan(): Flow<List<Hewan>>
+
+    @Query("SELECT * FROM tblHewan WHERE JenisHewan LIKE '%' || :searchKeyword || '%'")
+    suspend fun searchHewan(searchKeyword: String): List<Hewan>
 }

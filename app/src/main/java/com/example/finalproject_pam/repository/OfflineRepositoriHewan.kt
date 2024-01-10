@@ -24,4 +24,9 @@ class OfflineRepositoriHewan (private val hewanDao: HewanDao): RepositoriHewan {
     override suspend fun updateHewan(hewan: Hewan) {
         return hewanDao.update(hewan)
     }
+
+    override suspend fun searchHewan(searchKeyword: String): List<Hewan>? {
+        return hewanDao.searchHewan(searchKeyword)
+    }
+
 }

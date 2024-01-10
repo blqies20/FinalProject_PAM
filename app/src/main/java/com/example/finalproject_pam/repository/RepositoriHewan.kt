@@ -14,4 +14,6 @@ interface RepositoriHewan {
     suspend fun deleteHewan(hewan: Hewan)
 
     suspend fun updateHewan(hewan: Hewan)
+
+    suspend fun searchHewan(searchKeyword: String): List<Hewan>?
 }

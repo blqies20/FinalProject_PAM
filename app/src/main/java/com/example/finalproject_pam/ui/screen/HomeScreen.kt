@@ -1,3 +1,5 @@
+@file:OptIn(ExperimentalMaterial3Api::class)
+
 package com.example.finalproject_pam.ui.screen
 
 import androidx.compose.foundation.clickable
@@ -7,6 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -23,13 +26,18 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.BottomCenter
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
@@ -86,7 +94,8 @@ fun HomeScreen(
         BodyScreen(
             itemHewan = uiStateHewan.listHewan,
             modifier = Modifier.padding(innerPadding).fillMaxSize(),
-            onHewanClick = onDetailClick
+            onHewanClick = onDetailClick,
+            onSearchTextChanged = { viewModel.searchHewan(it) }
         )
     }
 }
@@ -96,8 +105,11 @@ fun HomeScreen(
 fun BodyScreen(
     itemHewan: List<Hewan>,
     modifier: Modifier=Modifier,
-    onHewanClick: (Int) -> Unit = {}
+    onHewanClick: (Int) -> Unit = {},
+    onSearchTextChanged: (String) -> Unit
 ){
+    var searchKeyword by remember { mutableStateOf("") }
+
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = modifier
@@ -115,6 +127,19 @@ fun BodyScreen(
                 onItemClick = {onHewanClick(it.id)}
             )
         }
+        OutlinedTextField(
+            value = searchKeyword,
+            onValueChange = {
+                searchKeyword = it
+                onSearchTextChanged(it)
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = dimensionResource(id = R.dimen.padding_small)),
+            label = { Text("Cari Jenis Hewan") }
+        )
+
+        Spacer(modifier = Modifier.height(8.dp))
     }
 }
 
