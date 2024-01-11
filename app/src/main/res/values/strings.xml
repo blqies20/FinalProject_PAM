@@ -25,8 +25,12 @@
     <string name="logout">Logout</string>
     <string name="attention">Perhatian</string>
     <string name="delete">Hapus</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm_buy">Apakah pembayaran telah berhasil?</string>
+    <string name="berhasil">Anda Telah Berhasil Membeli Hewan ini</string>
     <string name="edit">Edit Data</string>
     <string name="detail">Detail Data Hewan</string>
     <string name="required_field">* required fields</string>
     <string name="submit">Submit</string>
+
 </resources>

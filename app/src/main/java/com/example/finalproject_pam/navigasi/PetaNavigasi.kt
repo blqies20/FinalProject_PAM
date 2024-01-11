@@ -1,5 +1,6 @@
 package com.example.finalproject_pam.navigasi
 
+import androidx.compose.foundation.background
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -12,7 +13,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -24,7 +24,6 @@ import com.example.finalproject_pam.ui.screen.AddScreen
 import com.example.finalproject_pam.ui.screen.DestinasiAdd
 import com.example.finalproject_pam.ui.screen.DetailsDestination
 import com.example.finalproject_pam.ui.screen.DetailsScreen
-
 import com.example.finalproject_pam.ui.screen.HomeScreen
 import com.example.finalproject_pam.ui.screen.ItemEditDestination
 import com.example.finalproject_pam.ui.screen.ItemEditScreen
@@ -49,6 +48,7 @@ fun HewanTopAppbar(
     navigateUp: () -> Unit = {},
     onLogoutClick: () ->Unit
 ){
+
 
     CenterAlignedTopAppBar(
         title = { Text(title) },
@@ -128,7 +128,7 @@ fun PetaNavigasi(
         ) {
             DetailsScreen(
                 navigateBack = { navController.popBackStack() },
-                navigateToBuyItem = { },
+                navigateToBuyItem = { navController.navigate("home") },
                 navigateToLogout = { navController.navigate("login")},
                 navigateToEditItem = { navController.navigate("${ItemEditDestination.route}/$it") }
             )
@@ -145,6 +145,7 @@ fun PetaNavigasi(
                 navigateToLogout = { navController.navigate("login")},
                 onNavigateUp = { navController.navigateUp() })
         }
+
     }
 
 }

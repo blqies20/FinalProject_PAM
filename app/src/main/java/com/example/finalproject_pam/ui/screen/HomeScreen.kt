@@ -2,7 +2,7 @@
 
 package com.example.finalproject_pam.ui.screen
 
-import android.graphics.Paint.Align
+
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,7 +10,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -19,8 +18,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.Phone
-import androidx.compose.material.icons.filled.ShoppingCart
+
 
 
 import androidx.compose.material3.Card
@@ -42,7 +40,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.BottomCenter
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -56,11 +56,14 @@ import com.example.finalproject_pam.navigasi.DestinasiNavigasi
 import com.example.finalproject_pam.navigasi.HewanTopAppbar
 import com.example.finalproject_pam.ui.model.HomeViewModel
 import com.example.finalproject_pam.ui.model.PenyediaViewModel
+import com.example.finalproject_pam.ui.theme.black01
+import com.example.finalproject_pam.ui.theme.blue01
 
 object DestinasiHome : DestinasiNavigasi {
     override val route = "home"
     override val titleRes = R.string.app_name
 }
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(
@@ -86,10 +89,12 @@ fun HomeScreen(
             FloatingActionButton(
                 onClick = navigateToItemEntry,
                 shape = MaterialTheme.shapes.medium,
+                contentColor = (blue01),
                 modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large))
             ) {
                 Icon(
                     imageVector = Icons.Default.Add,
+                    tint = (black01),
                     contentDescription = stringResource(id = R.string.entry_hewan)
                 )
             }
@@ -98,12 +103,13 @@ fun HomeScreen(
         val uiStateHewan by viewModel.homeUiState.collectAsState()
         BodyScreen(
             itemHewan = uiStateHewan.listHewan,
-            modifier = Modifier.padding(innerPadding).fillMaxSize(),
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize(),
             onHewanClick = onDetailClick,
         )
     }
 }
-
 
 @Composable
 fun BodyScreen(
@@ -148,7 +154,9 @@ fun ListHewan(
                 person ->
             DataHewan(
                 hewan = person,
-                modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_small)).clickable{onItemClick(person)})
+                modifier = Modifier
+                    .padding(dimensionResource(id = R.dimen.padding_small))
+                    .clickable { onItemClick(person) })
         }
     }
 }
@@ -160,6 +168,7 @@ fun DataHewan(
 ){
     Card(
         modifier = modifier,
+        colors = CardDefaults.cardColors(blue01),
         elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
     ) {
         Column(
@@ -187,7 +196,7 @@ fun DataHewan(
                 Icon(
                     painter = painterResource(id = R.drawable.gender),
                     contentDescription = "gender",
-                    modifier = Modifier.size(30.dp)
+                    modifier = Modifier.size(23.dp)
                 )
                 Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.padding_small)))
                 Text(
@@ -195,6 +204,7 @@ fun DataHewan(
                     style = MaterialTheme.typography.titleMedium
                 )
             }
+
             Row(
                 modifier = Modifier.fillMaxWidth()
             ) {

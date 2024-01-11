@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.AlertDialog
@@ -27,6 +28,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
@@ -65,6 +67,7 @@ fun DetailsScreen(
 ){
     val uiState = viewModel.uiState.collectAsState()
     val coroutineScope = rememberCoroutineScope()
+    var showBuyConfirmationDialog by remember { mutableStateOf(false) }
     Scaffold(
         topBar = {
             HewanTopAppbar(
@@ -75,15 +78,21 @@ fun DetailsScreen(
             )
         },floatingActionButton = {
             FloatingActionButton(
-                onClick =  navigateToBuyItem ,
+                onClick =  {
+                    showBuyConfirmationDialog = true
+                    coroutineScope.launch {
+                        viewModel.deleteItem()
+                    }
+                           },
                 shape = MaterialTheme.shapes.medium,
                 modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large))
             ) {
-                Icon(imageVector = Icons.Default.ShoppingCart,
-                    contentDescription = "Buying"
+                Icon(imageVector = Icons.Default.Check,
+                    contentDescription = "Konfirmasi"
                 )
             }
-        } ,modifier = modifier
+        }
+        ,modifier = modifier
     )
     { innerPadding ->
         ItemDetailsBody(
@@ -101,6 +110,17 @@ fun DetailsScreen(
                 .padding(innerPadding)
                 .verticalScroll(rememberScrollState())
         )
+
+        if (showBuyConfirmationDialog) {
+            BuyConfirmationDialog(
+                onBuyConfirm = {
+                    showBuyConfirmationDialog = false
+                    navigateToBuyItem()
+                },
+                onBuyCancel = { showBuyConfirmationDialog = false },
+                modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_medium))
+            )
+        }
     }
 }
 
@@ -151,6 +171,8 @@ private fun ItemDetailsBody(
                 onDeleteCancel = { deleteConfirmationRequired = false },
                 modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_medium)))
         }
+
+
     }
 }
 
@@ -214,7 +236,6 @@ private fun ItemDetailsRow(
 
 @Composable
 private fun DeleteConfirmationDialog(
-
     onDeleteConfirm: () -> Unit,
     onDeleteCancel: () -> Unit,
     modifier: Modifier = Modifier
@@ -233,4 +254,27 @@ private fun DeleteConfirmationDialog(
                 Text(text = stringResource(id = R.string.yes))
             }
         })
+}
+
+@Composable
+private fun BuyConfirmationDialog(
+    onBuyConfirm: () -> Unit,
+    onBuyCancel: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    AlertDialog(
+        onDismissRequest = { },
+        title = { Text(text = stringResource(id = R.string.confirm_buy)) },
+        modifier = modifier,
+        dismissButton = {
+            TextButton(onClick = onBuyCancel) {
+                Text(text = stringResource(id = R.string.cancel))
+            }
+        },
+        confirmButton = {
+            TextButton(onClick = onBuyConfirm) {
+                Text(text = stringResource(id = R.string.yes))
+            }
+        }
+    )
 }

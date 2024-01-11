@@ -28,12 +28,15 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.finalproject_pam.R
 import com.example.finalproject_pam.navigasi.DestinasiNavigasi
 import com.example.finalproject_pam.navigasi.HewanTopAppbar
@@ -55,6 +58,21 @@ fun LoginScreen(
     val auth = FirebaseAuth.getInstance()
     val emailState = remember { mutableStateOf("") }
     val passwordState = remember { mutableStateOf("") }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 10.dp, vertical = 110.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = stringResource(R.string.app_name),
+            style = MaterialTheme.typography.headlineMedium,
+            color = Color.Black,
+            fontWeight = FontWeight.ExtraBold,
+            fontSize = 40.sp
+        )
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -71,7 +89,7 @@ fun LoginScreen(
         OutlinedTextField(
             value = emailState.value,
             onValueChange = { emailState.value = it },
-            label = { Text(stringResource(R.string.username)) },
+            label = { Text(stringResource(R.string.email)) },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
         )
         Spacer(modifier = Modifier.height(10.dp))

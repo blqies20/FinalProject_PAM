@@ -56,6 +56,7 @@ fun AddScreen(
             HewanTopAppbar(
                 title = stringResource(DestinasiAdd.titleRes),
                 canNavigateBack = true,
+                navigateUp = navigateBack,
                 scrollBehavior = scrollBehavior,
                 onLogoutClick = navigateToLogout
             )
