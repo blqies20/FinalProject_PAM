@@ -19,7 +19,7 @@ class AddViewModel (private val repositoriHewan: RepositoriHewan): ViewModel() {
     /** Fungsi untuk memvalidasi input **/
     private fun validasiInput(uiState: DetailHewan = uiStateHewan.detailHewan): Boolean{
         return with(uiState){
-            JnisHewan.isNotBlank() && gender.isNotBlank() && age.isNotBlank() && price.isNotBlank()
+            JenisHewan.isNotBlank() && gender.isNotBlank() && age.isNotBlank() && price.isNotBlank()
         }
     }
 
@@ -44,7 +44,7 @@ data class UIStateHewan(
 
 data class DetailHewan(
     val id: Int = 0,
-    val JnisHewan: String = "",
+    val JenisHewan: String = "",
     val gender: String = "",
     val age: String = "",
     val price : String = ""
@@ -52,7 +52,7 @@ data class DetailHewan(
 /** Fungsi untuk mengkonversi data input ke data dalam tabel sesuai jenis datanya **/
 fun DetailHewan.toHewan(): Hewan = Hewan(
     id = id,
-    JenisHewan = JnisHewan,
+    JenisHewan = JenisHewan,
     JenisKelamin = gender,
     Usia =  age,
     Harga = price
@@ -66,7 +66,7 @@ fun Hewan.toUiStateHewan(isAddValid: Boolean = false): UIStateHewan = UIStateHew
 
 fun Hewan.toDetailHewan(): DetailHewan = DetailHewan(
     id = id,
-    JnisHewan = JenisHewan,
+    JenisHewan = JenisHewan,
     gender = JenisKelamin,
     age = Usia,
     price = Harga

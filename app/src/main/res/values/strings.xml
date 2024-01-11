@@ -20,4 +20,12 @@
     <string name="email">Email</string>
     <string name="add_hewan">Tambahkan Data</string>
     <string name="required">Tekan Tombol Tambah Jika Belum Ada Data Hewan</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="attention">Perhatian</string>
+    <string name="delete">Hapus</string>
+    <string name="edit">Edit Data</string>
+    <string name="detail">Detail Data Hewan</string>
+    <string name="required_field">* required fields</string>
+    <string name="submit">Submit</string>
 </resources>

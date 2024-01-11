@@ -22,7 +22,7 @@ interface HewanDao {
     suspend fun delete(hewan: Hewan)
 
     @Query("SELECT * from tblHewan WHERE JenisHewan = :JenisHewan")
-    fun getHewan(JenisHewan: String): Flow<Hewan>
+    fun getHewan(JenisHewan: Int): Flow<Hewan>
 
     @Query("SELECT * from tblHewan ORDER BY JenisHewan ASC")
     fun getAllHewan(): Flow<List<Hewan>>

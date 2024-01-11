@@ -9,8 +9,8 @@ class OfflineRepositoriHewan (private val hewanDao: HewanDao): RepositoriHewan {
         return hewanDao.getAllHewan()
     }
 
-    override fun getHewanStream(JenisHewan: String): Flow<Hewan> {
-        return hewanDao.getHewan(JenisHewan)
+    override fun getHewanStream(id: Int): Flow<Hewan> {
+        return hewanDao.getHewan(id)
     }
 
     override suspend fun insertHewan(hewan: Hewan) {

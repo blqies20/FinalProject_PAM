@@ -109,8 +109,8 @@ fun AddForm(
         verticalArrangement = Arrangement.spacedBy(dimensionResource(id = R.dimen.padding_medium))
     ) {
         OutlinedTextField(
-            value = detailHewan.JnisHewan,
-            onValueChange = {onValueChange(detailHewan.copy(JnisHewan = it)) },
+            value = detailHewan.JenisHewan,
+            onValueChange = {onValueChange(detailHewan.copy(JenisHewan = it)) },
             label = { Text(text = "Jenis Hewan") },
             modifier = Modifier.fillMaxWidth(),
             enabled = enabled,
