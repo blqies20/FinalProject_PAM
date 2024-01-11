@@ -28,6 +28,7 @@ object ItemEditDestination : DestinasiNavigasi {
 fun ItemEditScreen(
     navigateBack: () -> Unit,
     onNavigateUp: () -> Unit,
+    navigateToLogout: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: EditViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ){
@@ -37,7 +38,8 @@ fun ItemEditScreen(
             HewanTopAppbar(
                 title = stringResource(id = ItemEditDestination.titleRes),
                 canNavigateBack = true,
-                navigateUp = onNavigateUp
+                navigateUp = onNavigateUp,
+                onLogoutClick = navigateToLogout
             )
         },
         modifier = modifier

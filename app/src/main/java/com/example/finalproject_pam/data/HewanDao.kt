@@ -21,8 +21,8 @@ interface HewanDao {
     @Delete
     suspend fun delete(hewan: Hewan)
 
-    @Query("SELECT * from tblHewan WHERE JenisHewan = :JenisHewan")
-    fun getHewan(JenisHewan: Int): Flow<Hewan>
+    @Query("SELECT * from tblHewan WHERE id = :id")
+    fun getHewan(id: Int): Flow<Hewan>
 
     @Query("SELECT * from tblHewan ORDER BY JenisHewan ASC")
     fun getAllHewan(): Flow<List<Hewan>>

@@ -12,4 +12,5 @@ data class Hewan(
     val JenisKelamin : String,
     val Usia : String,
     val Harga : String,
+    val imageUri: String
 )

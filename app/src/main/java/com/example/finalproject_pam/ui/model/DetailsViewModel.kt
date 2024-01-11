@@ -18,8 +18,11 @@ class DetailsViewModel (
 
     private val hewanId: Int = checkNotNull(savedStateHandle[DetailsDestination.hewanIdArg])
     val uiState: StateFlow<ItemDetailsUiState> =
-        repositoriHewan.getHewanStream(hewanId).filterNotNull().map { ItemDetailsUiState(detailHewan = it.toDetailHewan()) }.stateIn(
-            scope = viewModelScope, started = SharingStarted.WhileSubscribed(TIMEOUT_MILLIS),
+        repositoriHewan.getHewanStream(hewanId)
+            .filterNotNull()
+            .map { ItemDetailsUiState(detailHewan = it.toDetailHewan()) }
+            .stateIn(
+            scope = viewModelScope,started = SharingStarted.WhileSubscribed(TIMEOUT_MILLIS),
             initialValue = ItemDetailsUiState()
         )
 

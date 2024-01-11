@@ -64,6 +64,7 @@ object DestinasiHome : DestinasiNavigasi {
 @Composable
 fun HomeScreen(
     navigateToItemEntry: () -> Unit,
+    navigateToLogout: () -> Unit,
     modifier: Modifier = Modifier,
     onDetailClick: (Int) -> Unit = {},
     viewModel: HomeViewModel = viewModel(factory = PenyediaViewModel.Factory)
@@ -75,8 +76,9 @@ fun HomeScreen(
         topBar = {
             HewanTopAppbar(
                 title = stringResource(DestinasiHome.titleRes),
-                canNavigateBack = true,
-                scrollBehavior = scrollBehavior
+                canNavigateBack = false,
+                scrollBehavior = scrollBehavior,
+                onLogoutClick = navigateToLogout
             )
         },
         floatingActionButton = {
@@ -211,7 +213,7 @@ fun DataHewan(
                 modifier = Modifier.fillMaxWidth()
             ) {
                 Icon(
-                    imageVector = Icons.Default.ShoppingCart,
+                    painter = painterResource(id = R.drawable.money),
                     contentDescription = "Harga",
                     modifier = Modifier.size(23.dp)
                 )

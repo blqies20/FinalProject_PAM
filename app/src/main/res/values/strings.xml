@@ -22,6 +22,7 @@
     <string name="required">Tekan Tombol Tambah Jika Belum Ada Data Hewan</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="logout">Logout</string>
     <string name="attention">Perhatian</string>
     <string name="delete">Hapus</string>
     <string name="edit">Edit Data</string>

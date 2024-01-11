@@ -30,6 +30,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -56,6 +57,7 @@ object DetailsDestination : DestinasiNavigasi {
 fun DetailsScreen(
     navigateToEditItem: (Int) -> Unit,
     navigateBack: () -> Unit,
+    navigateToLogout: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: DetailsViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ){
@@ -66,20 +68,12 @@ fun DetailsScreen(
             HewanTopAppbar(
                 title = stringResource(id = DetailsDestination.titleRes),
                 canNavigateBack = true,
-                navigateUp = navigateBack
+                navigateUp = navigateBack,
+                onLogoutClick = navigateToLogout
             )
-        }, floatingActionButton = {
-            FloatingActionButton(
-                onClick = { navigateToEditItem(uiState.value.detailHewan.id) },
-                shape = MaterialTheme.shapes.medium,
-                modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large))
-            ) {
-                Icon(imageVector = Icons.Default.Edit,
-                    contentDescription = stringResource(id = R.string.edit)
-                )
-            }
         }, modifier = modifier
-    ) { innerPadding ->
+    )
+    { innerPadding ->
         ItemDetailsBody(
             itemDetailsUiState = uiState.value,
             onDelete = {
@@ -87,6 +81,9 @@ fun DetailsScreen(
                     viewModel.deleteItem()
                     navigateBack()
                 }
+            },
+            onEdit = {
+                navigateToEditItem(uiState.value.detailHewan.id)
             },
             modifier = Modifier
                 .padding(innerPadding)
@@ -99,6 +96,7 @@ fun DetailsScreen(
 private fun ItemDetailsBody(
     itemDetailsUiState: ItemDetailsUiState,
     onDelete: () -> Unit,
+    onEdit: () -> Unit,
     modifier: Modifier = Modifier
 ){
     Column(
@@ -112,13 +110,27 @@ private fun ItemDetailsBody(
         )
 
         OutlinedButton(
+            onClick = onEdit, // Menggunakan onEdit
+            shape = MaterialTheme.shapes.small,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text(
+                text = stringResource(id = R.string.edit),
+                fontWeight = FontWeight.Bold)
+        }
+
+        OutlinedButton(
             onClick = {deleteConfirmationRequired = true},
             shape = MaterialTheme.shapes.small,
             modifier = Modifier.fillMaxWidth()
         )
         {
-            Text(text = stringResource(id = R.string.delete))
+            Text(
+                text = stringResource(id = R.string.delete),
+                color = Color.Red,
+                fontWeight = FontWeight.Bold)
         }
+
         if (deleteConfirmationRequired){
             DeleteConfirmationDialog(
                 onDeleteConfirm = {

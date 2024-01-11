@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavHostController
@@ -21,8 +22,12 @@ import androidx.navigation.navArgument
 import com.example.finalproject_pam.R
 import com.example.finalproject_pam.ui.screen.AddScreen
 import com.example.finalproject_pam.ui.screen.DestinasiAdd
+import com.example.finalproject_pam.ui.screen.DetailsDestination
+import com.example.finalproject_pam.ui.screen.DetailsScreen
 
 import com.example.finalproject_pam.ui.screen.HomeScreen
+import com.example.finalproject_pam.ui.screen.ItemEditDestination
+import com.example.finalproject_pam.ui.screen.ItemEditScreen
 import com.example.finalproject_pam.ui.screen.LoginScreen
 import com.example.finalproject_pam.ui.screen.SignUpScreen
 
@@ -41,7 +46,8 @@ fun HewanTopAppbar(
     canNavigateBack: Boolean,
     modifier: Modifier = Modifier,
     scrollBehavior: TopAppBarScrollBehavior? = null,
-    navigateUp: () -> Unit = {}
+    navigateUp: () -> Unit = {},
+    onLogoutClick: () ->Unit
 ){
 
     CenterAlignedTopAppBar(
@@ -59,7 +65,17 @@ fun HewanTopAppbar(
                     )
                 }
             }
+        },
+        actions = {
+            // Menambahkan tombol logout di sini
+            IconButton(onClick = onLogoutClick) {
+                Icon(
+                    painter = painterResource(id = R.drawable.logout), // Ganti dengan ikon logout yang sesuai
+                    contentDescription = stringResource(id = R.string.logout)
+                )
+            }
         }
+
     )
 }
 
@@ -88,11 +104,45 @@ fun PetaNavigasi(
         }
         
         composable("home"){
-            HomeScreen(navigateToItemEntry = {navController.navigate(DestinasiAdd.route)})
+            HomeScreen(
+                navigateToItemEntry = {navController.navigate(DestinasiAdd.route)},
+                navigateToLogout = {navController.navigate("login")},
+                onDetailClick = {
+                    navController.navigate("${DetailsDestination.route}/$it")
+                }
+                )
         }
         
         composable(DestinasiAdd.route){
-            AddScreen(navigateBack = { navController.popBackStack()})
+            AddScreen(
+                navigateBack = { navController.popBackStack()},
+                navigateToLogout = { navController.navigate("login")}
+            )
+        }
+
+        composable(
+            DetailsDestination.routeWithArgs,
+            arguments = listOf(navArgument(DetailsDestination.hewanIdArg){
+                type = NavType.IntType
+            })
+        ) {
+            DetailsScreen(
+                navigateBack = { navController.popBackStack() },
+                navigateToLogout = { navController.navigate("login")},
+                navigateToEditItem = { navController.navigate("${ItemEditDestination.route}/$it") }
+            )
+        }
+
+        composable(
+            ItemEditDestination.routeWithArgs,
+            arguments = listOf(navArgument(ItemEditDestination.itemIdArgs) {
+                type = NavType.IntType
+            })
+        ) {
+            ItemEditScreen(
+                navigateBack = { navController.popBackStack() },
+                navigateToLogout = { navController.navigate("login")},
+                onNavigateUp = { navController.navigateUp() })
         }
     }
 

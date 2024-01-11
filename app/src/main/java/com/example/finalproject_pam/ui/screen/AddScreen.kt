@@ -39,6 +39,7 @@ object DestinasiAdd: DestinasiNavigasi {
 @Composable
 fun AddScreen(
     navigateBack: () -> Unit,
+    navigateToLogout: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: AddViewModel = viewModel(factory = PenyediaViewModel.Factory)
 ){
@@ -50,7 +51,8 @@ fun AddScreen(
             HewanTopAppbar(
                 title = stringResource(DestinasiAdd.titleRes),
                 canNavigateBack = true,
-                scrollBehavior = scrollBehavior
+                scrollBehavior = scrollBehavior,
+                onLogoutClick = navigateToLogout
             )
         }
     ) {innerPadding ->
@@ -91,7 +93,7 @@ fun AddBody(
             shape = MaterialTheme.shapes.small,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text(text = "submit")
+            Text(text = "Submit")
         }
     }
 }
@@ -140,6 +142,8 @@ fun AddForm(
             enabled = enabled,
             singleLine = true
         )
+
+
 
         if (enabled){
             Text(
