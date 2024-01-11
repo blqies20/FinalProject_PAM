@@ -7,10 +7,10 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "tblHewan")
 data class Hewan(
     @PrimaryKey(autoGenerate = true)
-    val id : Int = 0,
-    val JenisHewan : String,
-    val JenisKelamin : String,
-    val Usia : String,
-    val Harga : String,
-    val imageUri: String
+    val id: Int = 0,
+    val JenisHewan: String,
+    val JenisKelamin: String,
+    val Usia: String,
+    val Harga: String
+
 )

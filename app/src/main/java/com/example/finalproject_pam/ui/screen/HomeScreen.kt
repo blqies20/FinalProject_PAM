@@ -19,6 +19,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material.icons.filled.ShoppingCart
 
 
@@ -99,7 +100,6 @@ fun HomeScreen(
             itemHewan = uiStateHewan.listHewan,
             modifier = Modifier.padding(innerPadding).fillMaxSize(),
             onHewanClick = onDetailClick,
-            onSearchTextChanged = { viewModel.searchHewan(it) }
         )
     }
 }
@@ -110,9 +110,9 @@ fun BodyScreen(
     itemHewan: List<Hewan>,
     modifier: Modifier=Modifier,
     onHewanClick: (Int) -> Unit = {},
-    onSearchTextChanged: (String) -> Unit
+
 ){
-    var searchKeyword by remember { mutableStateOf("") }
+
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -223,7 +223,6 @@ fun DataHewan(
                     style = MaterialTheme.typography.titleMedium
                 )
             }
-            
         }
     }
 }

@@ -11,6 +11,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -56,6 +57,7 @@ object DetailsDestination : DestinasiNavigasi {
 @Composable
 fun DetailsScreen(
     navigateToEditItem: (Int) -> Unit,
+    navigateToBuyItem: () -> Unit,
     navigateBack: () -> Unit,
     navigateToLogout: () -> Unit,
     modifier: Modifier = Modifier,
@@ -71,7 +73,17 @@ fun DetailsScreen(
                 navigateUp = navigateBack,
                 onLogoutClick = navigateToLogout
             )
-        }, modifier = modifier
+        },floatingActionButton = {
+            FloatingActionButton(
+                onClick =  navigateToBuyItem ,
+                shape = MaterialTheme.shapes.medium,
+                modifier = Modifier.padding(dimensionResource(id = R.dimen.padding_large))
+            ) {
+                Icon(imageVector = Icons.Default.ShoppingCart,
+                    contentDescription = "Buying"
+                )
+            }
+        } ,modifier = modifier
     )
     { innerPadding ->
         ItemDetailsBody(
@@ -182,6 +194,7 @@ private fun ItemDetails(
                 modifier = Modifier.padding(horizontal = dimensionResource(id = R.dimen.padding_medium)
                 )
             )
+
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.example.finalproject_pam.ui.model
 
 
+import android.provider.ContactsContract.DisplayPhoto
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -47,7 +48,9 @@ data class DetailHewan(
     val JenisHewan: String = "",
     val gender: String = "",
     val age: String = "",
-    val price : String = ""
+    val price : String = "",
+
+
 )
 /** Fungsi untuk mengkonversi data input ke data dalam tabel sesuai jenis datanya **/
 fun DetailHewan.toHewan(): Hewan = Hewan(
@@ -56,7 +59,6 @@ fun DetailHewan.toHewan(): Hewan = Hewan(
     JenisKelamin = gender,
     Usia =  age,
     Harga = price
-
 )
 
 fun Hewan.toUiStateHewan(isAddValid: Boolean = false): UIStateHewan = UIStateHewan(

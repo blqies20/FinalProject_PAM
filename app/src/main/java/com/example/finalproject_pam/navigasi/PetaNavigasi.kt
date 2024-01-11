@@ -128,6 +128,7 @@ fun PetaNavigasi(
         ) {
             DetailsScreen(
                 navigateBack = { navController.popBackStack() },
+                navigateToBuyItem = { },
                 navigateToLogout = { navController.navigate("login")},
                 navigateToEditItem = { navController.navigate("${ItemEditDestination.route}/$it") }
             )

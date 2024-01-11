@@ -37,10 +37,10 @@ fun SignUpScreen(navigateToLogin: () -> Unit) {
     val signUpViewModel: SignUpViewModel = viewModel()
     val emailState = remember { mutableStateOf("") }
     val passwordState = remember { mutableStateOf("") }
-
     val coroutineScope = rememberCoroutineScope()
 
     Column(
+
         modifier = Modifier
             .fillMaxSize()
             .padding(horizontal = 20.dp, vertical = 20.dp),

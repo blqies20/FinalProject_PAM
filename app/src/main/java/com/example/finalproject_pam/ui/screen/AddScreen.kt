@@ -2,8 +2,11 @@ package com.example.finalproject_pam.ui.screen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
@@ -11,11 +14,13 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.dimensionResource
@@ -118,6 +123,37 @@ fun AddForm(
             enabled = enabled,
             singleLine = true
         )
+
+        Text("Jenis Kelamin:")
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+
+            RadioButton(
+                selected = detailHewan.gender == "Jantan",
+                onClick = {
+                    onValueChange(detailHewan.copy(gender = "Jantan"))
+                },
+                enabled = enabled
+            )
+
+            Text("Jantan")
+
+            Spacer(modifier = Modifier.width(dimensionResource(id = R.dimen.padding_small)))
+
+            RadioButton(
+                selected = detailHewan.gender == "Betina",
+                onClick = {
+                    onValueChange(detailHewan.copy(gender = "Betina"))
+                },
+                enabled = enabled
+            )
+
+            Text("Betina")
+        }
+
+        /*
         OutlinedTextField(
             value = detailHewan.gender,
             onValueChange = { onValueChange(detailHewan.copy(gender = it)) },
@@ -126,6 +162,8 @@ fun AddForm(
             enabled = enabled,
             singleLine = true
         )
+        */
+
         OutlinedTextField(
             value = detailHewan.age,
             onValueChange = { onValueChange(detailHewan.copy(age = it)) },
@@ -144,10 +182,9 @@ fun AddForm(
         )
 
 
-
         if (enabled){
             Text(
-                text = "Harus di isi",
+                text = "* harus di isi",
                 modifier = Modifier.padding(start = dimensionResource(id = R.dimen.padding_medium))
             )
         }
